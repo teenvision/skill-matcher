@@ -27,19 +27,40 @@
 
 ## 安装
 
-把本目录放进 WorkBuddy 的用户级技能目录：
+**方式一：手工放文件夹（最省事）**
+
+打开 https://github.com/teenvision/demo1/tree/main/skill-matcher ，把 `skill-matcher` 整个目录下载下来，解压后放到：
+
+| 系统 | 目标路径 |
+|---|---|
+| macOS / Linux | `~/.workbuddy/skills/skill-matcher/` |
+| Windows | `C:\Users\<你>\.workbuddy\skills\skill-matcher\` |
+
+**方式二：git clone**
 
 ```bash
 # macOS / Linux
-git clone https://github.com/teenvision/skill-matcher.git ~/.workbuddy/skills/skill-matcher
+git clone --depth 1 https://github.com/teenvision/demo1.git /tmp/demo1
+cp -r /tmp/demo1/skill-matcher ~/.workbuddy/skills/
 
 # Windows (PowerShell)
-git clone https://github.com/teenvision/skill-matcher.git "$env:USERPROFILE\.workbuddy\skills\skill-matcher"
+git clone --depth 1 https://github.com/teenvision/demo1.git "$env:TEMP\demo1"
+Copy-Item -Recurse "$env:TEMP\demo1\skill-matcher" "$env:USERPROFILE\.workbuddy\skills\"
 ```
 
-或手动：把 `SKILL.md` 与 `references/` 复制到 `~/.workbuddy/skills/skill-matcher/`。
+放好之后**无需重启**，下次会话的技能清单里就会出现 `skill-matcher`。
 
-无需重启，技能清单在下次会话生效。
+验证：对着 AI 说一句「用 skill-matcher 处理这个任务」，能加载就说明装好了。
+
+## 装上之后会看到什么
+
+| 你说 | 它会做 |
+|---|---|
+| 「把 report.pdf 按章节拆开」 | 一句「用 pdf 处理：…」，然后调用 |
+| 「做个季度复盘，要有图表」 | 列出 Word / PPT / 图表三个候选，各带理由，等你选 |
+| 「把这段文字的错别字改一下」 | 什么都不说，直接改 |
+| 「把这个 .psd 按图层导出」 | 一句「现有技能里没有对口的，我直接做」 |
+| 「你好」 | 什么都不说（不触发匹配） |
 
 ## 目录结构
 
