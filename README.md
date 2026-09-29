@@ -33,8 +33,8 @@
 | Windows | `C:\Users\<你>\.workbuddy\skills\skill-matcher\` |
 
 ```bash
-git clone --depth 1 https://github.com/teenvision/demo1.git /tmp/demo1
-cp -r /tmp/demo1/skill-matcher ~/.workbuddy/skills/
+git clone --depth 1 https://github.com/teenvision/skill-matcher.git /tmp/skill-matcher
+cp -r /tmp/skill-matcher/skill-matcher ~/.workbuddy/skills/
 ```
 
 验证：对 AI 说一句「用 skill-matcher 处理这个任务」，能加载就说明装好了。
@@ -48,8 +48,8 @@ cp -r /tmp/demo1/skill-matcher ~/.workbuddy/skills/
 ## 目录
 
 ```
-demo1/
-└── skill-matcher/
+本仓库
+└── skill-matcher/                    # 技能本体：把这个目录拷进你的 skills 目录
     ├── SKILL.md                     # 技能主体：定位、触发条件、匹配流程、输出规范
     ├── references/
     │   └── matching-examples.md     # 打分样例集 + 回归测试用例

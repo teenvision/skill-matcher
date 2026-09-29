@@ -29,7 +29,7 @@
 
 **方式一：手工放文件夹（最省事）**
 
-打开 https://github.com/teenvision/demo1/tree/main/skill-matcher ，把 `skill-matcher` 整个目录下载下来，解压后放到：
+打开 https://github.com/teenvision/skill-matcher/tree/main/skill-matcher ，把 `skill-matcher` 整个目录下载下来，解压后放到：
 
 | 系统 | 目标路径 |
 |---|---|
@@ -40,12 +40,12 @@
 
 ```bash
 # macOS / Linux
-git clone --depth 1 https://github.com/teenvision/demo1.git /tmp/demo1
-cp -r /tmp/demo1/skill-matcher ~/.workbuddy/skills/
+git clone --depth 1 https://github.com/teenvision/skill-matcher.git /tmp/skill-matcher
+cp -r /tmp/skill-matcher/skill-matcher ~/.workbuddy/skills/
 
 # Windows (PowerShell)
-git clone --depth 1 https://github.com/teenvision/demo1.git "$env:TEMP\demo1"
-Copy-Item -Recurse "$env:TEMP\demo1\skill-matcher" "$env:USERPROFILE\.workbuddy\skills\"
+git clone --depth 1 https://github.com/teenvision/skill-matcher.git "$env:TEMP\skill-matcher"
+Copy-Item -Recurse "$env:TEMP\skill-matcher\skill-matcher" "$env:USERPROFILE\.workbuddy\skills\"
 ```
 
 放好之后**无需重启**，下次会话的技能清单里就会出现 `skill-matcher`。
