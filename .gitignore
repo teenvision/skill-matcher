@@ -1,0 +1,27 @@
+# ---- 操作系统 ----
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- 运行时 / 依赖 ----
+node_modules/
+__pycache__/
+*.py[cod]
+.env
+.env.local
+
+# ---- 构建产物 / 日志 ----
+dist/
+build/
+*.log
+.cache/

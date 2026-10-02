@@ -1,0 +1,38 @@
+# ============================================================
+# 换行与文本规范化
+# 目的：仓库内一律 LF，消除 Windows(CRLF) 造成的 diff 噪音
+# ============================================================
+
+# 默认：自动识别文本，检出时也保持 LF
+* text=auto eol=lf
+
+# 明确文本类型（保险起见逐项声明）
+*.md           text eol=lf
+*.markdown     text eol=lf
+*.txt          text eol=lf
+*.yml          text eol=lf
+*.yaml         text eol=lf
+*.json         text eol=lf
+*.html         text eol=lf
+*.css          text eol=lf
+*.js           text eol=lf
+*.svg          text eol=lf
+.editorconfig  text eol=lf
+.gitattributes text eol=lf
+LICENSE        text eol=lf
+NOTICE         text eol=lf
+
+# 二进制：禁止任何转换
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.ico    binary
+*.pdf    binary
+*.zip    binary
+*.woff   binary
+*.woff2  binary
+
+# 归档文件不参与 diff 与合并
+*.zip -diff -merge
