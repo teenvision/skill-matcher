@@ -4,6 +4,8 @@
 
 一个 WorkBuddy / Claude Code **技能（Skill）**：在你下达任务之后、AI 开始执行之前，自动扫描已安装的全部技能、判断相关度，选出最合适的那个——能自动就用，有歧义就问，没对口就闭嘴干活。
 
+> 在线浏览：<https://teenvision.github.io/skill-matcher/>
+
 ## 解决的问题
 
 技能装多了会出现两种浪费：
@@ -48,17 +50,37 @@ cp -r /tmp/skill-matcher/skill-matcher ~/.workbuddy/skills/
 ## 目录
 
 ```
-本仓库
-└── skill-matcher/                    # 技能本体：把这个目录拷进你的 skills 目录
-    ├── SKILL.md                     # 技能主体：定位、触发条件、匹配流程、输出规范
-    ├── references/
-    │   └── matching-examples.md     # 打分样例集 + 回归测试用例
-    ├── README.md                    # 详细说明
-    └── LICENSE
+skill-matcher/                         # 仓库根
+├── .github/
+│   ├── workflows/deploy-pages.yml     # 自动部署到 GitHub Pages
+│   ├── ISSUE_TEMPLATE/                # Issue 模板
+│   └── PULL_REQUEST_TEMPLATE.md       # PR 模板
+├── site/                              # Pages 站点（静态页面）
+│   ├── index.html
+│   └── styles.css
+├── skill-matcher/                     # 技能本体：把这个目录拷进你的 skills 目录
+│   ├── SKILL.md                       # 技能主体：定位、触发条件、匹配流程、输出规范
+│   ├── references/
+│   │   └── matching-examples.md       # 打分样例集 + 回归测试用例
+│   ├── README.md                      # 详细说明
+│   └── LICENSE
+├── CHANGELOG.md                       # 变更记录
+├── CONTRIBUTING.md                    # 贡献指南
+├── CODE_OF_CONDUCT.md                 # 行为准则
+├── LICENSE                            # Apache License 2.0
+├── NOTICE                             # Apache 2.0 惯例文件
+└── README.md                          # 本文件
 ```
 
 完整行为说明、边界与适配指引见 [skill-matcher/README.md](./skill-matcher/README.md)。
 
+## 参与贡献
+
+欢迎 Issue 与 PR。提交前请先读 [贡献指南](./CONTRIBUTING.md)；
+参与即表示同意遵守 [行为准则](./CODE_OF_CONDUCT.md)。
+
 ## 许可
 
-MIT © teenvision
+本项目采用 [Apache License 2.0](./LICENSE) 授权，版权与归属信息见 [NOTICE](./NOTICE)。
+
+© 2026 teenvision

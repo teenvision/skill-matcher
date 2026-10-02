@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+# 触发条件：push 到 main，或手动在 Actions 页面点 "Run workflow"
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GitHub Pages 部署所需的最小权限
+permissions:
+  contents: read    # 读取仓库内容
+  pages: write      # 写入 Pages
+  id-token: write   # 供 deploy-pages 做 OIDC 校验
+
+# 同一时间只跑一个部署；排队而不取消正在进行的部署
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 站点根目录：本仓库的静态页面放在 site/
+          path: ./site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

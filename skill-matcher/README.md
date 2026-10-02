@@ -97,4 +97,6 @@ skill-matcher/
 
 ## 许可
 
-MIT
+本项目采用 [Apache License 2.0](./LICENSE) 授权。
+
+© 2026 teenvision

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>skill-matcher — 让 AI 先想清楚该用哪把工具</title>
+<meta name="description" content="一个 WorkBuddy / Claude Code 技能：在任务开始前自动匹配最合适的技能。能自动就用，有歧义就问，没对口就闭嘴干活。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-dot" aria-hidden="true"></span>
+      skill-matcher
+    </a>
+    <nav class="nav">
+      <a href="#how">行为</a>
+      <a href="#install">安装</a>
+      <a href="#principles">原则</a>
+      <a class="nav-cta" href="https://github.com/teenvision/skill-matcher">GitHub →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <p class="eyebrow">WorkBuddy · Claude Code &nbsp;/&nbsp; Skill</p>
+    <h1>让 AI 在动手之前，<br>先想清楚该用哪把工具。</h1>
+    <p class="lede">
+      技能装多了会两难：要么<strong>漏用</strong>，要么每次任务都刷一屏调度日志。
+      <strong>skill-matcher</strong> 把"选技能"做成一个安静的前置步骤——
+      能自动就用，有歧义就问，没对口就闭嘴干活。
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#install">看安装（30 秒）</a>
+      <a class="btn btn-ghost" href="https://github.com/teenvision/skill-matcher">在 GitHub 上查看</a>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>它解决的两种浪费</h2>
+    <div class="cards">
+      <article class="card">
+        <span class="card-num">01</span>
+        <h3>漏用</h3>
+        <p>明明装了专门处理 PDF 的技能，却手写脚本硬解。</p>
+      </article>
+      <article class="card">
+        <span class="card-num">02</span>
+        <h3>噪音</h3>
+        <p>每次任务都汇报"我扫描了 40 个技能，发现 3 个相关……"，用户被迫读调度日志。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="how" class="wrap section">
+    <h2>装上之后会看到什么</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>你说</th><th>它会做</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>把 report.pdf 按章节拆开</td><td>一句「用 pdf 处理：…」，然后调用</td></tr>
+          <tr><td>做个季度复盘，要有图表</td><td>列出 Word / PPT / 图表三个候选，各带理由，等你选</td></tr>
+          <tr><td>把这段文字的错别字改一下</td><td>什么都不说，直接改</td></tr>
+          <tr><td>把这个 .psd 按图层导出</td><td>一句「现有技能里没有对口的，我直接做」</td></tr>
+          <tr><td>你好</td><td>什么都不说（不触发匹配）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="install" class="wrap section">
+    <h2>安装（30 秒）</h2>
+    <ol class="steps">
+      <li>
+        <h3>拿到技能目录</h3>
+        <pre><code>git clone --depth 1 https://github.com/teenvision/skill-matcher.git /tmp/skill-matcher</code></pre>
+      </li>
+      <li>
+        <h3>放进技能目录</h3>
+        <p>把 <code>skill-matcher</code> 目录拷到下面任一位置（没有该目录就新建）：</p>
+        <pre><code># macOS / Linux
+~/.workbuddy/skills/skill-matcher/
+
+# Windows
+C:\Users\&lt;你&gt;\.workbuddy\skills\skill-matcher\</code></pre>
+      </li>
+      <li>
+        <h3>验证</h3>
+        <p>无需重启。对 AI 说一句「用 skill-matcher 处理这个任务」，能加载就说明装好了。</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="principles" class="wrap section">
+    <h2>三条设计底线</h2>
+    <ol class="principles">
+      <li><strong>产出物优先</strong> —— 先问"要做出来的东西是什么"，再找技能；不看关键词字面重合。</li>
+      <li><strong>直调三条件</strong> —— 高相关 <em>且</em> 唯一 <em>且</em> 不改变执行方式，三者缺一不可。</li>
+      <li><strong>输出只有三档</strong> —— 确认块 / 一句话 / 零输出。没有第四种。</li>
+    </ol>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>以 <a href="https://github.com/teenvision/skill-matcher/blob/main/LICENSE">Apache License 2.0</a> 授权 · © 2026 teenvision</p>
+    <p><a href="https://github.com/teenvision/skill-matcher">github.com/teenvision/skill-matcher</a></p>
+  </div>
+</footer>
+</body>
+</html>
