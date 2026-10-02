@@ -1,0 +1,5 @@
+# Issue 模板配置
+# 文档：https://docs.github.com/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+
+# 允许创建空白 Issue（供自由格式反馈使用）
+blank_issues_enabled: true
