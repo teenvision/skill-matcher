@@ -16,6 +16,7 @@
 ### Changed
 
 - 许可证由 MIT 更换为 Apache License 2.0，并新增 `NOTICE`
+- 重做 GitHub Pages 落地页视觉：改为"配线台"主题，新增路由示意图与语义配色
 
 ## [1.0.0] - 2026-09-29
 

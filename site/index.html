@@ -3,113 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>skill-matcher — 让 AI 先想清楚该用哪把工具</title>
 <meta name="description" content="一个 WorkBuddy / Claude Code 技能：在任务开始前自动匹配最合适的技能。能自动就用，有歧义就问，没对口就闭嘴干活。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%230E6B55'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap header-inner">
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="shell topbar-in">
     <a class="brand" href="#top">
-      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-mark" aria-hidden="true"></span>
       skill-matcher
     </a>
-    <nav class="nav">
-      <a href="#how">行为</a>
+    <nav class="topnav" aria-label="页面导航">
+      <a href="#problem">问题</a>
+      <a href="#behavior">行为</a>
       <a href="#install">安装</a>
-      <a href="#principles">原则</a>
-      <a class="nav-cta" href="https://github.com/teenvision/skill-matcher">GitHub →</a>
+      <a class="topnav-repo" href="https://github.com/teenvision/skill-matcher">GitHub</a>
     </nav>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero wrap">
-    <p class="eyebrow">WorkBuddy · Claude Code &nbsp;/&nbsp; Skill</p>
-    <h1>让 AI 在动手之前，<br>先想清楚该用哪把工具。</h1>
-    <p class="lede">
-      技能装多了会两难：要么<strong>漏用</strong>，要么每次任务都刷一屏调度日志。
-      <strong>skill-matcher</strong> 把"选技能"做成一个安静的前置步骤——
-      能自动就用，有歧义就问，没对口就闭嘴干活。
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#install">看安装（30 秒）</a>
-      <a class="btn btn-ghost" href="https://github.com/teenvision/skill-matcher">在 GitHub 上查看</a>
+<main id="main">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="top">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">WorkBuddy · Claude Code 技能</p>
+        <h1>让 AI 先想清楚，<br>该用哪把工具。</h1>
+        <p class="lede">
+          技能装多了会两难：要么漏用，要么每次任务都刷一屏调度日志。
+          它把"选技能"做成一个安静的前置步骤。
+        </p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#install">安装（30 秒）</a>
+          <a class="btn btn-line" href="https://github.com/teenvision/skill-matcher">查看源码</a>
+        </div>
+        <dl class="facts">
+          <div><dt>触发</dt><dd>任务开始前</dd></div>
+          <div><dt>开销</dt><dd>零依赖</dd></div>
+          <div><dt>许可</dt><dd>Apache-2.0</dd></div>
+        </dl>
+      </div>
+
+      <figure class="hero-figure">
+        <svg class="routing" viewBox="0 0 560 392" role="img"
+             aria-label="一个任务被路由到四个技能端口，其中一条路径被点亮">
+          <!-- 底图连线 -->
+          <g class="wires" fill="none" stroke-linecap="round">
+            <path class="w stub"  d="M116 202 H176"/>
+            <path class="w trunk" d="M176 64 V340"/>
+            <path class="w go"    d="M176 64 H352"/>
+            <path class="w ask"   d="M176 156 H352"/>
+            <path class="w quiet" d="M176 248 H352"/>
+            <path class="w quiet" d="M176 340 H352"/>
+          </g>
+
+          <!-- 被点亮的路由 -->
+          <path class="route" pathLength="1" d="M116 202 H176 V64 H352" fill="none"/>
+          <circle class="pulse" r="3.6" cx="0" cy="0">
+            <animateMotion dur="3.6s" begin="1.5s" repeatCount="indefinite"
+                           path="M116 202 H176 V64 H352"/>
+          </circle>
+
+          <!-- 输入节点 -->
+          <g class="node">
+            <rect x="16" y="176" width="100" height="52" rx="10"/>
+            <text x="66" y="208" text-anchor="middle">任务</text>
+          </g>
+
+          <!-- 端口 -->
+          <g class="ports">
+            <g class="port port-go">
+              <rect x="352" y="42" width="176" height="44" rx="9"/>
+              <text class="p-name" x="370" y="69">pdf</text>
+              <text class="p-verdict" x="510" y="69" text-anchor="end">直调</text>
+            </g>
+            <g class="port port-ask">
+              <rect x="352" y="134" width="176" height="44" rx="9"/>
+              <text class="p-name" x="370" y="161">pptx</text>
+              <text class="p-verdict" x="510" y="161" text-anchor="end">先确认</text>
+            </g>
+            <g class="port port-quiet">
+              <rect x="352" y="226" width="176" height="44" rx="9"/>
+              <text class="p-name" x="370" y="253">xlsx</text>
+              <text class="p-verdict" x="510" y="253" text-anchor="end">静默</text>
+            </g>
+            <g class="port port-miss">
+              <rect x="352" y="318" width="176" height="44" rx="9"/>
+              <text class="p-name" x="370" y="345">—</text>
+              <text class="p-verdict" x="510" y="345" text-anchor="end">未命中</text>
+            </g>
+          </g>
+        </svg>
+        <figcaption class="figure-note">
+          <span class="lg lg-go">直调</span>
+          <span class="lg lg-ask">先确认</span>
+          <span class="lg lg-quiet">静默</span>
+          <span class="lg-note">一次任务，只点亮一条线</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="wrap section">
-    <h2>它解决的两种浪费</h2>
-    <div class="cards">
-      <article class="card">
-        <span class="card-num">01</span>
-        <h3>漏用</h3>
-        <p>明明装了专门处理 PDF 的技能，却手写脚本硬解。</p>
-      </article>
-      <article class="card">
-        <span class="card-num">02</span>
-        <h3>噪音</h3>
-        <p>每次任务都汇报"我扫描了 40 个技能，发现 3 个相关……"，用户被迫读调度日志。</p>
-      </article>
+  <!-- ============ 问题 ============ -->
+  <section class="row" id="problem">
+    <p class="tag">问题</p>
+    <div class="body">
+      <h2>技能装多了，会同时出现两种浪费</h2>
+      <div class="duo">
+        <div class="duo-item">
+          <h3>漏用</h3>
+          <p>明明装了专门处理 PDF 的技能，却手写脚本硬解。工具在手边，没人记得用它。</p>
+        </div>
+        <div class="duo-item">
+          <h3>噪音</h3>
+          <p>另一种极端：每次任务都汇报"我扫描了 40 个技能，发现 3 个相关……"，你被迫读调度日志。</p>
+        </div>
+      </div>
+      <p class="closing">skill-matcher 把匹配做成一个安静的前置步骤——只在结论会改变执行方式时才开口。</p>
     </div>
   </section>
 
-  <section id="how" class="wrap section">
-    <h2>装上之后会看到什么</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>你说</th><th>它会做</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>把 report.pdf 按章节拆开</td><td>一句「用 pdf 处理：…」，然后调用</td></tr>
-          <tr><td>做个季度复盘，要有图表</td><td>列出 Word / PPT / 图表三个候选，各带理由，等你选</td></tr>
-          <tr><td>把这段文字的错别字改一下</td><td>什么都不说，直接改</td></tr>
-          <tr><td>把这个 .psd 按图层导出</td><td>一句「现有技能里没有对口的，我直接做」</td></tr>
-          <tr><td>你好</td><td>什么都不说（不触发匹配）</td></tr>
-        </tbody>
-      </table>
+  <!-- ============ 行为 ============ -->
+  <section class="row" id="behavior">
+    <p class="tag">行为</p>
+    <div class="body">
+      <h2>装上之后会看到什么</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">你说</th><th scope="col">它会做</th><th scope="col">结局</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>把 report.pdf 按章节拆开</td>
+              <td>一句「用 pdf 处理：…」，然后调用</td>
+              <td><span class="chip chip-go">直调</span></td>
+            </tr>
+            <tr>
+              <td>做个季度复盘，要有图表</td>
+              <td>列出 Word / PPT / 图表三个候选，各带理由，等你选</td>
+              <td><span class="chip chip-ask">先确认</span></td>
+            </tr>
+            <tr>
+              <td>把这段文字的错别字改一下</td>
+              <td>什么都不说，直接改</td>
+              <td><span class="chip chip-quiet">静默</span></td>
+            </tr>
+            <tr>
+              <td>把这个 .psd 按图层导出</td>
+              <td>一句「现有技能里没有对口的，我直接做」</td>
+              <td><span class="chip chip-miss">未命中</span></td>
+            </tr>
+            <tr>
+              <td>你好</td>
+              <td>什么都不说（不触发匹配）</td>
+              <td><span class="chip chip-quiet">静默</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <section id="install" class="wrap section">
-    <h2>安装（30 秒）</h2>
-    <ol class="steps">
-      <li>
-        <h3>拿到技能目录</h3>
-        <pre><code>git clone --depth 1 https://github.com/teenvision/skill-matcher.git /tmp/skill-matcher</code></pre>
-      </li>
-      <li>
-        <h3>放进技能目录</h3>
-        <p>把 <code>skill-matcher</code> 目录拷到下面任一位置（没有该目录就新建）：</p>
-        <pre><code># macOS / Linux
+  <!-- ============ 安装 ============ -->
+  <section class="row" id="install">
+    <p class="tag">安装</p>
+    <div class="body">
+      <h2>三步，约 30 秒</h2>
+      <ol class="steps">
+        <li>
+          <h3>拿到技能目录</h3>
+          <pre><code>git clone --depth 1 https://github.com/teenvision/skill-matcher.git /tmp/skill-matcher</code></pre>
+        </li>
+        <li>
+          <h3>放进技能目录</h3>
+          <p>把 <code>skill-matcher</code> 目录拷到下面任一位置（目录不存在就新建）：</p>
+          <pre><code># macOS / Linux
 ~/.workbuddy/skills/skill-matcher/
 
 # Windows
 C:\Users\&lt;你&gt;\.workbuddy\skills\skill-matcher\</code></pre>
-      </li>
-      <li>
-        <h3>验证</h3>
-        <p>无需重启。对 AI 说一句「用 skill-matcher 处理这个任务」，能加载就说明装好了。</p>
-      </li>
-    </ol>
+        </li>
+        <li>
+          <h3>验证</h3>
+          <p>无需重启。对 AI 说一句「用 skill-matcher 处理这个任务」，能加载就说明装好了。</p>
+        </li>
+      </ol>
+    </div>
   </section>
 
-  <section id="principles" class="wrap section">
-    <h2>三条设计底线</h2>
-    <ol class="principles">
-      <li><strong>产出物优先</strong> —— 先问"要做出来的东西是什么"，再找技能；不看关键词字面重合。</li>
-      <li><strong>直调三条件</strong> —— 高相关 <em>且</em> 唯一 <em>且</em> 不改变执行方式，三者缺一不可。</li>
-      <li><strong>输出只有三档</strong> —— 确认块 / 一句话 / 零输出。没有第四种。</li>
-    </ol>
+  <!-- ============ 原则 ============ -->
+  <section class="row" id="principles">
+    <p class="tag">原则</p>
+    <div class="body">
+      <h2>三条设计底线</h2>
+      <ul class="tenets">
+        <li>
+          <h3>产出物优先</h3>
+          <p>先问"要做出来的东西是什么"，再找技能；不看关键词字面重合。</p>
+        </li>
+        <li>
+          <h3>直调三条件</h3>
+          <p>高相关 <em>且</em> 唯一 <em>且</em> 不改变执行方式——三者缺一不可。</p>
+        </li>
+        <li>
+          <h3>输出只有三档</h3>
+          <p>确认块 / 一句话 / 零输出。没有第四种。</p>
+        </li>
+      </ul>
+    </div>
   </section>
+
 </main>
 
-<footer class="site-footer">
-  <div class="wrap footer-inner">
+<footer class="footer">
+  <div class="shell footer-in">
     <p>以 <a href="https://github.com/teenvision/skill-matcher/blob/main/LICENSE">Apache License 2.0</a> 授权 · © 2026 teenvision</p>
     <p><a href="https://github.com/teenvision/skill-matcher">github.com/teenvision/skill-matcher</a></p>
   </div>
 </footer>
+
 </body>
 </html>
